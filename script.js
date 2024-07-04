@@ -85,12 +85,12 @@ function visualizarRastreio() {
 
         let divLocal = document.createElement("div")
         let contentlocal = document.createElement('p')
-        contentlocal.innerHTML = local[i]
+        contentlocal.innerHTML = `Local: ${local[i]}`
         divLocal.appendChild(contentlocal)
 
         let divStatusRastreio = document.createElement("div")
         let contentStatusRastreio= document.createElement('p')
-        contentStatusRastreio.innerHTML = `Local: ${statusRastreio[i]}`
+        contentStatusRastreio.innerHTML = `Staus: ${statusRastreio[i]}`
         divStatusRastreio.appendChild(contentStatusRastreio)
 
         divCodigo.appendChild(divStatusRastreio)
