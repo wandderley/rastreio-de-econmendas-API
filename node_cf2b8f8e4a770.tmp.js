@@ -1,15 +1,15 @@
-const codigoRastreio = document.querySelector('#codigoRastreio')
-const btnBuscarRastreio = document.querySelector('#buscarRastreio')
+// const codigoRastreio = document.querySelector('#codigoRastreio')
+// const btnBuscarRastreio = document.querySelector('#buscarRastreio')
 
-btnBuscarRastreio.addEventListener('click', function () {
-    if(!codigoRastreio){
-        alert('digite um valor válido')
-    }else{
-        const codigo = codigoRastreio.value
-        buscarEncomendas(codigo)
-    }
+// btnBuscarRastreio.addEventListener('click', function () {
+//     if(!codigoRastreio){
+//         alert('digite um valor válido')
+//     }else{
+//         const codigo = codigoRastreio.value
+//         buscarEncomendas(codigo)
+//     }
 
-})
+// })
 
 function buscarEncomendas(codigo) {
     // let user = 'teste';
@@ -20,19 +20,28 @@ function buscarEncomendas(codigo) {
     let url = `https://api.linketrack.com/track/json?user=${user}&token=${token}&codigo=${codigo}`;
 
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na requisição da API');
+            }
+            return response.json();
+        })
         .then(data => {
             let eventos = data.eventos
             let codigo = data.codigo
-
+            alert('deu certo')
             console.log(codigo);;
             console.log(eventos);
 
         })
         .catch(error => {
             console.error(error);
-            buscarEncomendas(codigo);
+            buscarEncomendas(codigo)
         })
 }
+
+const codigo = 'NM479945411BR'
+
+buscarEncomendas(codigo)
 
 //NM479945411BR
