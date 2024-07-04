@@ -41,6 +41,10 @@ button[type="button"] {
     border: none;
 }
 
+divAtualizacaoRastreio{
+    background-color: red;
+}
+
 #resultadoRastreio{
     
 }

@@ -72,16 +72,22 @@ function visualizarRastreio() {
 
     // cria todos os elementos de status do rastreio dinâmicamente
     for (let i = 0; i < dia.length; i++) {
+        // let divAtualizacaoRastreio = document.createElement('div')
 
-        let divDia = document.createElement("div")
-        let contentDia = document.createElement('p')
-        contentDia.innerHTML = dia[i]
-        divDia.appendChild(contentDia)
-
-        let divHora = document.createElement("div")
-        let contentHora = document.createElement('p')
-        contentHora.innerHTML = hora[i]
-        divHora.appendChild(contentHora)
+        let divDataAtualizacao = document.createElement('div')
+        let contentDataAtualizacao = document.createElement('p')
+        contentDataAtualizacao.innerHTML = `Data de atualização: ${dia[i]} às  ${hora[i]}`
+        divDataAtualizacao.appendChild(contentDataAtualizacao)
+        
+        // let divDia = document.createElement("div")
+        // let contentDia = document.createElement('p')
+        // contentDia.innerHTML = dia[i]
+        // divDia.appendChild(contentDia)
+        
+        // let divHora = document.createElement("div")
+        // let contentHora = document.createElement('p')
+        // contentHora.innerHTML = hora[i]
+        // divHora.appendChild(contentHora)
 
         let divLocal = document.createElement("div")
         let contentlocal = document.createElement('p')
@@ -95,8 +101,12 @@ function visualizarRastreio() {
 
         divCodigo.appendChild(divStatusRastreio)
         divCodigo.appendChild(divLocal)
-        divCodigo.appendChild(divDia)
-        divCodigo.appendChild(divHora)
+        divCodigo.appendChild(divDataAtualizacao)
+        
+        // divCodigo.appendChild(divDia)
+        // divCodigo.appendChild(divHora)
+
+        // divAtualizacaoRastreio.appendChild(divCodigo)
     }
 
 }
