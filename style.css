@@ -1,0 +1,42 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #dcf4ff; /* Definir o background do body */
+}
+
+#containerRastreio {
+    height: 150px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #eee; /* Manter o background específico do #containerRastreio */
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+#codigoRastreio{
+    display: block;
+    margin: 5px;
+}
+
+button[type="submit"] {
+    height: 30px;
+    padding: 0px 10px 0px 10px;
+    border-radius: 15px;
+
+    background-color: blue;
+    color: white;
+    border: none;
+}
