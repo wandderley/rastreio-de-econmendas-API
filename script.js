@@ -108,9 +108,9 @@ function visualizarRastreio() {
 
         let divOrigemDestino = document.createElement('div')
         let contentOrigemDestino = document.createElement('p')
-        contentOrigemDestino.innerHTML = `Origem: ${subStatus[i][0]}</br>${subStatus[i][1]}`
+        // contentOrigemDestino.innerHTML = `${subStatus[i][0]}<br>${subStatus[i][1]}`;
+        contentOrigemDestino.innerHTML = `${subStatus[i]}`;
         divOrigemDestino.appendChild(contentOrigemDestino)
-
 
         let divStatusRastreio = document.createElement('div')
         let contentStatusRastreio = document.createElement('p')
@@ -118,7 +118,7 @@ function visualizarRastreio() {
         divStatusRastreio.appendChild(contentStatusRastreio)
 
         divAtualizacaoRastreio.appendChild(divStatusRastreio)
-        divAtualizacaoRastreio.appendChild(divLocal)
+        // divAtualizacaoRastreio.appendChild(divLocal)
         divAtualizacaoRastreio.appendChild(divOrigemDestino)
         divAtualizacaoRastreio.appendChild(divDataAtualizacao)
 
