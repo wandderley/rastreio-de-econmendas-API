@@ -22,7 +22,7 @@ btnBuscarRastreio.addEventListener('click', function () {
     // console.log(hora)
     // console.log(local)
     // console.log(statusRastreio)
-    // console.log(subStatus)
+    //console.log(subStatus)
 })
 
 
@@ -101,18 +101,25 @@ function visualizarRastreio() {
         // contentHora.innerHTML = hora[i]
         // divHora.appendChild(contentHora)
 
-        let divLocal = document.createElement("div")
+        let divLocal = document.createElement('div')
         let contentlocal = document.createElement('p')
-        contentlocal.innerHTML = `Local: ${local[i]}`
+        contentlocal.innerHTML = `Local Atual: ${local[i]}`
         divLocal.appendChild(contentlocal)
 
-        let divStatusRastreio = document.createElement("div")
+        let divOrigemDestino = document.createElement('div')
+        let contentOrigemDestino = document.createElement('p')
+        contentOrigemDestino.innerHTML = `Origem: ${subStatus[i][0]}</br>${subStatus[i][1]}`
+        divOrigemDestino.appendChild(contentOrigemDestino)
+
+
+        let divStatusRastreio = document.createElement('div')
         let contentStatusRastreio = document.createElement('p')
         contentStatusRastreio.innerHTML = `Staus: ${statusRastreio[i]}`
         divStatusRastreio.appendChild(contentStatusRastreio)
 
         divAtualizacaoRastreio.appendChild(divStatusRastreio)
         divAtualizacaoRastreio.appendChild(divLocal)
+        divAtualizacaoRastreio.appendChild(divOrigemDestino)
         divAtualizacaoRastreio.appendChild(divDataAtualizacao)
 
         // divCodigo.appendChild(divDia)
@@ -120,5 +127,4 @@ function visualizarRastreio() {
 
         divCodigo.appendChild(divAtualizacaoRastreio)
     }
-
 }

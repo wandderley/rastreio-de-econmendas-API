@@ -11,7 +11,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #dcf4ff; /* Definir o background do body */
+    background-color: #e9dcff;
+    /* Definir o background do body */
 }
 
 #containerRastreio {
@@ -21,14 +22,34 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #eee; /* Manter o background específico do #containerRastreio */
+    flex-direction: column;
+    background-color: #ffffff;
+    /* Manter o background específico do #containerRastreio */
     border-radius: 15px;
     border: 1px solid black;
 }
 
-#codigoRastreio{
+#codigoRastreio {
     display: block;
     margin: 5px;
+}
+
+input[type="text"] {
+    padding: 3px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+input[type=text]:focus {
+    border-bottom: 1px solid green;
+    outline: none;
+    background-color: white;
+}
+
+
+/*auto-complete do navegador*/
+input[type="text"]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    -webkit-text-fill-color: black; /* Cor do texto */
 }
 
 button[type="button"] {
@@ -41,8 +62,8 @@ button[type="button"] {
     border: none;
 }
 
-.atualizacaoRastreio{
+.atualizacaoRastreio {
     margin: 7px 0;
     padding: 10px;
-    border-left: 5px solid black; 
+    border-left: 4px solid black;
 }
