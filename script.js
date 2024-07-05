@@ -32,6 +32,12 @@ function buscarEncomendas(codigo) {
     let url = `https://api.linketrack.com/track/json?user=${user}&token=${token}&codigo=${codigo}`;
     codigoEncomenda = codigoRastreio.value
 
+    dia = []
+    hora = []
+    local = []
+    statusRastreio = []
+    subStatus = []
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -55,11 +61,15 @@ function buscarEncomendas(codigo) {
 }
 
 function visualizarRastreio() {
-    resultadoRastreio.innerHTML = '';
+    while (resultadoRastreio.firstChild) {
+        resultadoRastreio.removeChild(resultadoRastreio.firstChild);
+    }
 
     //cria a div que mostrará os dados de rastreio
     let divCodigo = document.createElement("div")
     divCodigo.setAttribute('id', 'produto-' + codigoEncomenda)
+
+    // resultadoRastreio.innerHTML = ' ';
 
     // o título da div sera criado dinâmicamente com o codigo de rastreio
     let codigoDoProduto = document.createElement('h1')
@@ -72,18 +82,20 @@ function visualizarRastreio() {
 
     // cria todos os elementos de status do rastreio dinâmicamente
     for (let i = 0; i < dia.length; i++) {
-        // let divAtualizacaoRastreio = document.createElement('div')
+
+        let divAtualizacaoRastreio = document.createElement('div')
+        divAtualizacaoRastreio.classList.add('atualizacaoRastreio')
 
         let divDataAtualizacao = document.createElement('div')
         let contentDataAtualizacao = document.createElement('p')
         contentDataAtualizacao.innerHTML = `Data de atualização: ${dia[i]} às  ${hora[i]}`
         divDataAtualizacao.appendChild(contentDataAtualizacao)
-        
+
         // let divDia = document.createElement("div")
         // let contentDia = document.createElement('p')
         // contentDia.innerHTML = dia[i]
         // divDia.appendChild(contentDia)
-        
+
         // let divHora = document.createElement("div")
         // let contentHora = document.createElement('p')
         // contentHora.innerHTML = hora[i]
@@ -95,18 +107,18 @@ function visualizarRastreio() {
         divLocal.appendChild(contentlocal)
 
         let divStatusRastreio = document.createElement("div")
-        let contentStatusRastreio= document.createElement('p')
+        let contentStatusRastreio = document.createElement('p')
         contentStatusRastreio.innerHTML = `Staus: ${statusRastreio[i]}`
         divStatusRastreio.appendChild(contentStatusRastreio)
 
-        divCodigo.appendChild(divStatusRastreio)
-        divCodigo.appendChild(divLocal)
-        divCodigo.appendChild(divDataAtualizacao)
-        
+        divAtualizacaoRastreio.appendChild(divStatusRastreio)
+        divAtualizacaoRastreio.appendChild(divLocal)
+        divAtualizacaoRastreio.appendChild(divDataAtualizacao)
+
         // divCodigo.appendChild(divDia)
         // divCodigo.appendChild(divHora)
 
-        // divAtualizacaoRastreio.appendChild(divCodigo)
+        divCodigo.appendChild(divAtualizacaoRastreio)
     }
 
 }
