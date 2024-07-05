@@ -1,7 +1,7 @@
 const codigoRastreio = document.querySelector('#codigoRastreio')
 const btnBuscarRastreio = document.querySelector('#buscarRastreio')
 const resultadoRastreio = document.querySelector('#resultadoRastreio')
-
+let encomendas = []
 
 let dia = []
 let hora = []
@@ -10,7 +10,6 @@ let statusRastreio = []
 let subStatus = []
 let codigoEncomenda
 
-
 btnBuscarRastreio.addEventListener('click', function () {
     if (!codigoRastreio.value) {
         alert('digite um valor válido')
@@ -18,13 +17,7 @@ btnBuscarRastreio.addEventListener('click', function () {
         const codigo = codigoRastreio.value
         buscarEncomendas(codigo)
     }
-    // console.log(dia)
-    // console.log(hora)
-    // console.log(local)
-    // console.log(statusRastreio)
-    //console.log(subStatus)
 })
-
 
 function buscarEncomendas(codigo) {
     let user = 'teste';
@@ -69,8 +62,6 @@ function visualizarRastreio() {
     let divCodigo = document.createElement("div")
     divCodigo.setAttribute('id', 'produto-' + codigoEncomenda)
 
-    // resultadoRastreio.innerHTML = ' ';
-
     // o título da div sera criado dinâmicamente com o codigo de rastreio
     let codigoDoProduto = document.createElement('h1')
     codigoDoProduto.textContent = codigoEncomenda //atrivui o título ao h1
@@ -80,51 +71,58 @@ function visualizarRastreio() {
     // adiciona a div do produto criada dinâmicamente à div já presente no html
     resultadoRastreio.appendChild(divCodigo)
 
+
     // cria todos os elementos de status do rastreio dinâmicamente
     for (let i = 0; i < dia.length; i++) {
-
+        // div onde estará contido cada bloco de atualização
         let divAtualizacaoRastreio = document.createElement('div')
         divAtualizacaoRastreio.classList.add('atualizacaoRastreio')
 
-        let divDataAtualizacao = document.createElement('div')
-        let contentDataAtualizacao = document.createElement('p')
-        contentDataAtualizacao.innerHTML = `Data de atualização: ${dia[i]} às  ${hora[i]}`
-        divDataAtualizacao.appendChild(contentDataAtualizacao)
-
-        // let divDia = document.createElement("div")
-        // let contentDia = document.createElement('p')
-        // contentDia.innerHTML = dia[i]
-        // divDia.appendChild(contentDia)
-
-        // let divHora = document.createElement("div")
-        // let contentHora = document.createElement('p')
-        // contentHora.innerHTML = hora[i]
-        // divHora.appendChild(contentHora)
-
-        let divLocal = document.createElement('div')
-        let contentlocal = document.createElement('p')
-        contentlocal.innerHTML = `Local Atual: ${local[i]}`
-        divLocal.appendChild(contentlocal)
-
-        let divOrigemDestino = document.createElement('div')
-        let contentOrigemDestino = document.createElement('p')
-        // contentOrigemDestino.innerHTML = `${subStatus[i][0]}<br>${subStatus[i][1]}`;
-        contentOrigemDestino.innerHTML = `${subStatus[i]}`;
-        divOrigemDestino.appendChild(contentOrigemDestino)
-
+        // div do status do rastreio
         let divStatusRastreio = document.createElement('div')
+        divStatusRastreio.setAttribute('id', 'divStatusRastreio')
+        //<p> onde estará contido o retorno da api
         let contentStatusRastreio = document.createElement('p')
+        contentStatusRastreio.classList.add('statusRastreio')
         contentStatusRastreio.innerHTML = `Staus: ${statusRastreio[i]}`
+        // inserindo o parágrafo na div
         divStatusRastreio.appendChild(contentStatusRastreio)
 
+        // div da data de atualização
+        let divDataAtualizacao = document.createElement('div')
+        divDataAtualizacao.setAttribute('id', 'divDataAtualizacao')
+        //<p> onde estará contido o retorno da api
+        let contentDataAtualizacao = document.createElement('p')
+        contentDataAtualizacao.classList.add('dataAtualizacao')
+        contentDataAtualizacao.innerHTML = `Data de atualização: ${dia[i]} às  ${hora[i]}`
+        // inserindo o parágrafo na div
+        divDataAtualizacao.appendChild(contentDataAtualizacao)
+
+        /* div retorna o local atual do pacote rastreado
+        let divLocal = document.createElement('div')
+        let contentlocal = document.createElement('p')
+        divLocal
+        contentlocal.classList.add('localRastreio')
+        contentlocal.innerHTML = `Local Atual: ${local[i]}`
+        divLocal.appendChild(contentlocal)
+        */
+
+        // div do local
+        let divOrigemDestino = document.createElement('div')
+        divOrigemDestino.setAttribute('id', 'divOrigemDestino')
+        //<p> onde estará contido o retorno da api
+        let contentOrigemDestino = document.createElement('p')
+        contentOrigemDestino.classList.add('origemDestino')
+        contentOrigemDestino.innerHTML = `${subStatus[i]}`;
+        // inserindo o parágrafo na div
+        divOrigemDestino.appendChild(contentOrigemDestino)
+
+        // inserindo as div de status, local e data na div que conterá as atualizações
         divAtualizacaoRastreio.appendChild(divStatusRastreio)
-        // divAtualizacaoRastreio.appendChild(divLocal)
         divAtualizacaoRastreio.appendChild(divOrigemDestino)
         divAtualizacaoRastreio.appendChild(divDataAtualizacao)
 
-        // divCodigo.appendChild(divDia)
-        // divCodigo.appendChild(divHora)
-
+        // inserindo a div com cada atualização na div pai presente no html
         divCodigo.appendChild(divAtualizacaoRastreio)
     }
 }
