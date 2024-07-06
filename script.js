@@ -64,6 +64,8 @@ function visualizarRastreio() {
 
     // o título da div sera criado dinâmicamente com o codigo de rastreio
     let codigoDoProduto = document.createElement('h1')
+    codigoDoProduto.classList.add('tituloRastreio')
+
     codigoDoProduto.textContent = codigoEncomenda //atrivui o título ao h1
 
     // adiciona o titulo a div do produto pesquisado
@@ -125,4 +127,16 @@ function visualizarRastreio() {
         // inserindo a div com cada atualização na div pai presente no html
         divCodigo.appendChild(divAtualizacaoRastreio)
     }
+    
+    document.body.style.justifyContent = 'flex-start';
+    // btnBuscarRastreio.innerHTML = 'Limpar'
+}
+
+function limparRastreioAtual(){
+    btnBuscarRastreio.innerHTML = 'Buscar'
+     divCodigo.innerHTML = ''
+    while (resultadoRastreio.firstChild) {
+        resultadoRastreio.removeChild(resultadoRastreio.firstChild);
+    }       
+    document.body.style.justifyContent = 'center';
 }
