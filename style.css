@@ -11,11 +11,18 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #e9dcff;
+    background-color: #454650;
     /* Definir o background do body */
 }
 
+h1{
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.5em;
+}
+
 #containerRastreio {
+    min-height: 100px;
     height: 100px;
     width: 250px;
     margin: 10px 0px;
@@ -63,8 +70,33 @@ button[type="button"] {
     border: none;
 }
 
+.tituloRastreio{
+    margin: 30px 0px 20px 0px;
+    text-align: center;
+    color: rgb(204, 149, 255);
+}
+
 .atualizacaoRastreio {
-    margin: 7px 0;
+    margin: 0px 10px 15px 10px;
     padding: 10px;
-    border-left: 4px solid black;
+    border-left: 3px solid rgb(158, 132, 255);
+}
+
+.statusRastreio{
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: rgb(216, 187, 255);
+}
+
+.origemDestino{
+    margin-bottom: 5px;
+    color: white;
+}
+
+.dataAtualizacao{
+    color: white;
+}
+
+.origemDestino > .minhasImportacoes > a {
+    color: rgb(112, 162, 255);
 }
