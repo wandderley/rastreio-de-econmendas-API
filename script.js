@@ -35,11 +35,7 @@ function buscarEncomendas(codigo) {
     codigoEncomenda = codigoRastreio.value
 
     // limpa o conteudo dos arrays, caso haja algum dado de um consulta passada
-    dia = []
-    hora = []
-    local = []
-    statusRastreio = []
-    subStatus = []
+    LimparDadosArmazenados()
 
     fetch(url)
         .then(response => response.json())
@@ -78,13 +74,33 @@ function visualizarRastreio() {
     let codigoDoProduto = document.createElement('h1')
     codigoDoProduto.classList.add('tituloRastreio')
 
-    codigoDoProduto.textContent = codigoEncomenda //atrivui o título ao h1
+    codigoDoProduto.textContent = codigoEncomenda //atribui o título ao h1
 
     // adiciona o titulo a div do produto pesquisado
     divCodigo.appendChild(codigoDoProduto)
-    // adiciona a div do produto criada dinâmicamente à div já presente no html
-    resultadoRastreio.appendChild(divCodigo)
 
+    let divAdicionarTitulo = document.createElement('div')
+    divAdicionarTitulo.setAttribute('id','divAdicionarTitulo')
+
+    //label para o titulo adicionado pelo usuario
+    let lblTituloEncomenda = document.createElement('label')
+    lblTituloEncomenda.setAttribute('for','tituloEncomenda')
+    lblTituloEncomenda.setAttribute('id','lblTituloEncomenda')
+    lblTituloEncomenda.innerHTML = 'Insira um nome para esta encomenda, caso deseje salvar.'
+
+    //cria um input para adicionar um título da escolha do usuário
+    let tituloEncomenda = document.createElement('input')
+    tituloEncomenda.setAttribute('type','text')
+    tituloEncomenda.setAttribute('name','tituloEncomenda')
+    tituloEncomenda.setAttribute('id','tituloEncomenda')
+    
+    divAdicionarTitulo.appendChild(lblTituloEncomenda)
+    divAdicionarTitulo.appendChild(tituloEncomenda)
+
+    divCodigo.appendChild(divAdicionarTitulo)
+
+    // adiciona a div do produto criada dinâmicamente à div já presente no html
+    resultadoRastreio.appendChild(divCodigo)    
 
     // cria todos os elementos de status do rastreio dinâmicamente
     for (let i = 0; i < dia.length; i++) {
@@ -163,9 +179,13 @@ function limparRastreioAtual(){
 
     // limpa o conteúdo armazenado nos elementos responsáveis por armazenar dados do rastreio
     codigoRastreio.value = ''
+    LimparDadosArmazenados()
+}
+
+function LimparDadosArmazenados(){
     dia = []
     hora = []
     local = []
     statusRastreio = []
-    subStatus = []         
+    subStatus = []  
 }
