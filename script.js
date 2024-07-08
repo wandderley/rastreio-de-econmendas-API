@@ -17,15 +17,19 @@ const btnLimpar = document.createElement('button')
 btnLimpar.classList.add('button')
 btnLimpar.innerHTML = 'Limpar'
 
+let tentativas = 10
 // botão responsável por chamar a função principal de buscar e exibir dados de rastreio
 btnBuscarRastreio.addEventListener('click', function () {
+    tentativas = 10
     if (!codigoRastreio.value) {
         alert('digite um valor válido')
     } else {
         const codigo = codigoRastreio.value
         buscarEncomendas(codigo)
+        
     }
 })
+
 
 
 // FUNÇÃO PARA BUSCAR AS ENCOMENDAS
@@ -56,7 +60,13 @@ function buscarEncomendas(codigo) {
         })
         .catch(error => {
             console.error(error);
-            buscarEncomendas(codigo);
+            if(tentativas > 0){
+                setTimeout(()=> buscarEncomendas(codigo), 1200)
+                tentativas --
+            }else{
+                console.log('Ops, não conseguimos rastrear sua encomenda. Verifique o código e tete novamente.')
+
+            }            
         })
 }
 
