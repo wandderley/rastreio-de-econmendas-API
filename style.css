@@ -60,7 +60,7 @@ input[type="text"]:-webkit-autofill {
     -webkit-text-fill-color: black; /* Cor do texto */
 }
 
-button[type="button"] {
+.button{
     height: 30px;
     padding: 0px 10px 0px 10px;
     border-radius: 15px;

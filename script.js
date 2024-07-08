@@ -1,8 +1,10 @@
 const codigoRastreio = document.querySelector('#codigoRastreio')
 const btnBuscarRastreio = document.querySelector('#buscarRastreio')
 const resultadoRastreio = document.querySelector('#resultadoRastreio')
+const divContainer = document.querySelector('#containerRastreio')
 let encomendas = []
 
+// declarando os elementos que conterão os dados de rastreio
 let dia = []
 let hora = []
 let local = []
@@ -10,6 +12,12 @@ let statusRastreio = []
 let subStatus = []
 let codigoEncomenda
 
+// botão limpar
+const btnLimpar = document.createElement('button')
+btnLimpar.classList.add('button')
+btnLimpar.innerHTML = 'Limpar'
+
+// botão responsável por chamar a função principal de buscar e exibir dados de rastreio
 btnBuscarRastreio.addEventListener('click', function () {
     if (!codigoRastreio.value) {
         alert('digite um valor válido')
@@ -19,12 +27,14 @@ btnBuscarRastreio.addEventListener('click', function () {
     }
 })
 
+// FUNÇÃO PARA BUSCAR AS ENCOMENDAS
 function buscarEncomendas(codigo) {
     let user = 'teste';
     let token = '1abcd00b2731640e886fb41a8a9671ad1434c599dbaa0a0de9a5aa619f29a83f';
     let url = `https://api.linketrack.com/track/json?user=${user}&token=${token}&codigo=${codigo}`;
     codigoEncomenda = codigoRastreio.value
 
+    // limpa o conteudo dos arrays, caso haja algum dado de um consulta passada
     dia = []
     hora = []
     local = []
@@ -53,6 +63,8 @@ function buscarEncomendas(codigo) {
         })
 }
 
+
+// FUNÇÃO PARA EXIBIR OS DADOS DO RASTREIO
 function visualizarRastreio() {
     while (resultadoRastreio.firstChild) {
         resultadoRastreio.removeChild(resultadoRastreio.firstChild);
@@ -129,14 +141,31 @@ function visualizarRastreio() {
     }
     
     document.body.style.justifyContent = 'flex-start';
-    // btnBuscarRastreio.innerHTML = 'Limpar'
+    divContainer.appendChild(btnLimpar)
+
+    divContainer.removeChild(btnBuscarRastreio)
+
+    btnLimpar.addEventListener('click',limparRastreioAtual)
+
 }
 
 function limparRastreioAtual(){
-    btnBuscarRastreio.innerHTML = 'Buscar'
-     divCodigo.innerHTML = ''
+
+    // remove todos os elementos que foram criado dinamicamente
     while (resultadoRastreio.firstChild) {
         resultadoRastreio.removeChild(resultadoRastreio.firstChild);
-    }       
+    } 
+
+    divContainer.removeChild(btnLimpar) // remove o botão limpar
+    divContainer.appendChild(btnBuscarRastreio) // adiciona o botão remover
+
     document.body.style.justifyContent = 'center';
+
+    // limpa o conteúdo armazenado nos elementos responsáveis por armazenar dados do rastreio
+    codigoRastreio.value = ''
+    dia = []
+    hora = []
+    local = []
+    statusRastreio = []
+    subStatus = []         
 }
