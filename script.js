@@ -25,8 +25,7 @@ btnBuscarRastreio.addEventListener('click', function () {
         alert('digite um valor válido')
     } else {
         const codigo = codigoRastreio.value
-        buscarEncomendas(codigo)
-        
+        buscarEncomendas(codigo)        
     }
 })
 
@@ -73,14 +72,11 @@ function buscarEncomendas(codigo) {
 
 //cria a div que mostrará os dados de rastreio
 let divCodigo = document.createElement("div")
-divCodigo.setAttribute('id', 'produto-' + codigoEncomenda)
+
 
 // FUNÇÃO PARA EXIBIR OS DADOS DO RASTREIO
 function visualizarRastreio() {
-    while (resultadoRastreio.firstChild) {
-        resultadoRastreio.removeChild(resultadoRastreio.firstChild);
-    }
-
+    
     adicionarTitulos()
 
     // cria todos os elementos de status do rastreio dinâmicamente
@@ -122,9 +118,14 @@ function LimparDadosArmazenados() {
     local = []
     statusRastreio = []
     subStatus = []
+    while (divCodigo.firstChild) {
+        divCodigo.removeChild(divCodigo.firstChild);
+    }
 }
 
 function adicionarConteudoRastreio(i) {
+    divCodigo.setAttribute('id', 'produto-' + codigoEncomenda)
+    
     // div onde estará contido cada bloco de atualização
     let divAtualizacaoRastreio = document.createElement('div')
     divAtualizacaoRastreio.classList.add('atualizacaoRastreio')
